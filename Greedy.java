@@ -8,11 +8,13 @@ public class Greedy {
     ArrayList<Arco<Integer>> tuneles;
     int cantidadDeTuneles;
     int costoTunel;
+    int contador;
 
     public Greedy(ArrayList<Arco<Integer>> tuneles, ArrayList<Integer> estacionesSinRepetir){
         this.tuneles = tuneles;
         this.cantidadDeTuneles= tuneles.size();
         this.costoTunel =0;
+        this.contador = 0;
     }
     
 
@@ -28,10 +30,14 @@ public class Greedy {
         for (Arco<Integer> tunel : this.tuneles) {
             int originRoot = unionFind.find(tunel.getVerticeOrigen());
             int destinationRoot = unionFind.find(tunel.getVerticeDestino());
+            contador++;
+
 
             if (originRoot != destinationRoot) {
                 tunelesDistanciaMinima.add(tunel);
+                contador++;
                 unionFind.union(originRoot, destinationRoot);
+                contador++;
                 costoTunel += tunel.getEtiqueta();
             }
         }
@@ -39,13 +45,13 @@ public class Greedy {
         return tunelesDistanciaMinima ;
     }
 
-
-
-    public int getCosto(){
-        
+    public int getCosto(){     
         return this.costoTunel;
     }
 
+    public int getContador(){       
+        return this.contador;
+    }
 
 
 

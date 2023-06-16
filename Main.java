@@ -10,9 +10,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String path = DATASET3;
+		String path = DATASET2;
 		CSVReader dataSets = new CSVReader(path);
 		dataSets.read();
+
+		//obteber tuneles
 		ArrayList<Arco<Integer>> tuneles = dataSets.getTuneles();
 		System.out.println(tuneles);
 
@@ -21,9 +23,11 @@ public class Main {
 		ArrayList<Integer> estaciones = dataSets.getEstaciones();
 		System.out.println(estaciones);
 
-	 Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
-	 System.out.println( "main greedy()"+busquedaGreedy.greedy());
-	 System.out.println("Costo tunel dataSet3: "+busquedaGreedy.getCosto());
+		//instanciar y calcular con greedy el camino mas corto de túneles
+	    Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
+	 	System.out.println( "main greedy()"+busquedaGreedy.greedy());
+	 	System.out.println("Costo tunel dataSet3: "+busquedaGreedy.getCosto());
+		System.out.println(busquedaGreedy.getContador());
 	}
 		
 

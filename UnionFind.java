@@ -23,7 +23,7 @@ public class UnionFind {
     public void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
-
+    
         if (rootX == rootY) {
             return;
         }
