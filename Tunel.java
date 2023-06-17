@@ -1,11 +1,11 @@
 
-public class Arco<T> implements Comparable<Arco<T>>{
+public class Tunel<T> implements Comparable<Tunel<T>>{
 
 	private int verticeOrigen;
 	private int verticeDestino;
 	private T etiqueta;
 
-	public Arco(int verticeOrigen, int verticeDestino, T etiqueta) {
+	public Tunel(int verticeOrigen, int verticeDestino, T etiqueta) {
 		this.verticeOrigen = verticeOrigen;
 		this.verticeDestino = verticeDestino;
 		this.etiqueta = etiqueta;
@@ -13,7 +13,7 @@ public class Arco<T> implements Comparable<Arco<T>>{
 	
 	/**
 	* Complejidad: O(1)	debido a que debe
-	* tomar el valor  del arco instanciado.
+	* tomar el valor  del tunel instanciado.
 	*/
 	public int getVerticeOrigen() {
 		return verticeOrigen;
@@ -21,14 +21,14 @@ public class Arco<T> implements Comparable<Arco<T>>{
 	
 	/**
 	* Complejidad: O(1)	debido a que debe
-	* tomar el valor del arco instanciado.
+	* tomar el valor del tunel instanciado.
 	*/
 	public int getVerticeDestino() {
 		return verticeDestino;
 	}
 	/**
 	* Complejidad: O(1)	debido a que debe
-	* tomar el valor del arco instanciado.
+	* tomar el valor del tunel instanciado.
 	*/
 	public T getEtiqueta() {
 		return etiqueta;
@@ -37,7 +37,8 @@ public class Arco<T> implements Comparable<Arco<T>>{
 	
 
 	@Override
-	public int compareTo(Arco<T>  o ) {
+	public int compareTo(Tunel<T>  o ) {
+		Contador.sumar();
 		if ((int) this.getEtiqueta() > (int) o.getEtiqueta()) {
 			return 1;
 		}else if ((int )this.getEtiqueta() < (int)o.getEtiqueta()){
