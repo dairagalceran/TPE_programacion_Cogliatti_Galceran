@@ -53,11 +53,4 @@ public class Greedy {
         return this.contador;
     }
 
-
-
-
-
-
-
-    
 }

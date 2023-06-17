@@ -49,7 +49,7 @@ public class Arco<T> implements Comparable<Arco<T>>{
 	
     @Override
 	public String toString(){
-		return  "{ "+ this.getVerticeOrigen() + " , " + this.getVerticeDestino() + " , "+ this.getEtiqueta()+ " }";
+		return  "E"+ this.getVerticeOrigen() + " - E" + this.getVerticeDestino()+" ";
 	}
 
 
