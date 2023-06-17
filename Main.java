@@ -24,7 +24,7 @@ public class Main {
 		System.out.println(estaciones);
 
 		//instanciar y calcular con greedy el camino mas corto de túneles
-	    Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
+	        Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
 		System.out.println("Técnica: Greedy");
 	 	System.out.println( "Lista de túneles a construir: "+busquedaGreedy.greedy());
 	 	System.out.println("Cantidad de metros totales dataSet3: "+busquedaGreedy.getCosto()+"km.");
