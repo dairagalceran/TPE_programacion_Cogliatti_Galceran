@@ -13,12 +13,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String path = DATASET2;
+		String path = DATASET3;
 		CSVReader dataSets = new CSVReader(path);
 		dataSets.read();
 
 		//obteber tuneles
-		ArrayList<Arco<Integer>> tuneles = dataSets.getTuneles();
+		ArrayList<Tunel<Integer>> tuneles = dataSets.getTuneles();
 		System.out.println(tuneles);
 
 
@@ -26,12 +26,18 @@ public class Main {
 		ArrayList<Integer> estaciones = dataSets.getEstaciones();
 		System.out.println(estaciones);
 
+		Contador.reiniciar();
 		//instanciar y calcular con greedy el camino mas corto de túneles
-	        Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
+		Timer timer = new Timer();
+		timer.start();
+	    Greedy busquedaGreedy = new Greedy(tuneles);
+		ArrayList<Tunel<Integer>> solucionGreedy = busquedaGreedy.greedy();
+		double greedyTime = timer.stop();
 		System.out.println("Técnica: Greedy");
-	 	System.out.println( "Lista de túneles a construir: "+busquedaGreedy.greedy());
+	 	System.out.println( "Lista de túneles a construir: "+solucionGreedy);
 	 	System.out.println("Cantidad de metros totales dataSet3: "+busquedaGreedy.getCosto()+"km.");
-		System.out.println("Costo de encontrar la solución : "+busquedaGreedy.getContador());
+		System.out.println("Costo en tiempo de encontrar la solución : "+ greedyTime);
+		System.out.println("Costo en operaciones de encontrar la solución : "+ Contador.getContador());
 	}
 		
 }

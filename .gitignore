@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 /out
 /.idea
 /.vscode
 /out
 TPE_programacion_Cogliatti_Galceran.iml
 
+=======
+.DS_Store
+*.xlsx
+>>>>>>> 5d5eb5b6ec51ccd94d9e0b70ed51ba5d714979e9

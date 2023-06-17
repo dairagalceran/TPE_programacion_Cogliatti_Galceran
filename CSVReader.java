@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CSVReader {
 
 	private String path;
-	private ArrayList<Arco<Integer>> tuneles;
+	private ArrayList<Tunel<Integer>> tuneles;
 	private ArrayList<Integer> estaciones;
 	
 	public CSVReader(String path) {
@@ -31,18 +31,18 @@ public class CSVReader {
 			Integer destino = Integer.parseInt(line[1].trim().substring(1));
 			Integer etiqueta = Integer.parseInt(line[2].trim());
 			
-			Arco<Integer> tunel = new Arco<>(origen, destino, etiqueta);
+			Tunel<Integer> tunel = new Tunel<>(origen, destino, etiqueta);
 			this.tuneles.add(tunel);
 		}
 		
 	}
 
-	public ArrayList<Arco<Integer>> getTuneles(){
-		return new ArrayList<Arco<Integer>>(this.tuneles);
+	public ArrayList<Tunel<Integer>> getTuneles(){
+		return new ArrayList<Tunel<Integer>>(this.tuneles);
 	}
 
 	public ArrayList<Integer> getEstaciones(){
-		for(Arco<Integer> tunel : tuneles){
+		for(Tunel<Integer> tunel : tuneles){
 			if(!this.estaciones.contains(tunel.getVerticeOrigen()))
 				this.estaciones.add(tunel.getVerticeOrigen());
 			if(!this.estaciones.contains(tunel.getVerticeDestino()))

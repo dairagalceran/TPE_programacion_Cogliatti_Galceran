@@ -10,6 +10,7 @@ public class UnionFind {
         for (int i = 0; i < size; i++) {
             parent[i] = i;
             rank[i] = 0;
+            Contador.sumar();
         }
     }
 
@@ -17,6 +18,7 @@ public class UnionFind {
         if (parent[x] != x) {
             parent[x] = find(parent[x]);
         }
+        Contador.sumar();
         return parent[x];
     }
 
@@ -36,6 +38,7 @@ public class UnionFind {
             parent[rootY] = rootX;
             rank[rootX]++;
         }
+        Contador.sumar();
     }
     
 }
