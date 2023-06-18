@@ -39,14 +39,21 @@ public class Greedy {
             this.time ++;
 
             int estacionOrigen  = tunel.getVerticeOrigen();
+            this.time ++;
             int estacionDestino = tunel.getVerticeDestino();
+            this.time ++;
 
             int estacionOrigenIndex  = estaciones.indexOf(estacionOrigen);
+            this.time ++;
             int estacionDestinoIndex = estaciones.indexOf(estacionDestino);
+            this.time ++;
 
             if( unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex)){
+                this.time ++;
                 this.tunelesDistanciaMinima.add(tunel);
+                this.time ++;
                 unionFind.union(estacionOrigenIndex, estacionDestinoIndex);
+                this.time ++;
                 costoTunel += tunel.getEtiqueta();
             }
         }
