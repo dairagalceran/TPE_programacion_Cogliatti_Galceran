@@ -34,6 +34,13 @@ public class CSVReader {
 			Tunel<Integer> tunel = new Tunel<>(origen, destino, etiqueta);
 			this.tuneles.add(tunel);
 		}
+
+		for(Tunel<Integer> tunel : tuneles){
+			if(!this.estaciones.contains(tunel.getVerticeOrigen()))
+				this.estaciones.add(tunel.getVerticeOrigen());
+			if(!this.estaciones.contains(tunel.getVerticeDestino()))
+				this.estaciones.add(tunel.getVerticeDestino());
+		}
 		
 	}
 
@@ -42,12 +49,6 @@ public class CSVReader {
 	}
 
 	public ArrayList<Integer> getEstaciones(){
-		for(Tunel<Integer> tunel : tuneles){
-			if(!this.estaciones.contains(tunel.getVerticeOrigen()))
-				this.estaciones.add(tunel.getVerticeOrigen());
-			if(!this.estaciones.contains(tunel.getVerticeDestino()))
-				this.estaciones.add(tunel.getVerticeDestino());
-		}
 		return new ArrayList<Integer>(this.estaciones);
 	}
 
