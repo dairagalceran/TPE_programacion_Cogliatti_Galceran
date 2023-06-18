@@ -23,12 +23,18 @@ public class Main {
 		ArrayList<Integer> estaciones = dataSets.getEstaciones();
 		System.out.println(estaciones);
 
+		Timer timer = new Timer();
+		timer.start();
+
 		//instanciar y calcular con greedy el camino mas corto de túneles
 	    Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
 		ArrayList<Tunel<Integer>> solucionGreedy = busquedaGreedy.getSolucion();
+		double greedyTime = timer.stop();
+
 		System.out.println("Técnica: Greedy");
 	 	System.out.println( "Lista de túneles a construir: "+solucionGreedy);
 	 	System.out.println("Cantidad de metros totales dataSet3: "+busquedaGreedy.getCosto()+"km.");
+		System.out.println("Tiempo total de la ejecución : "+ greedyTime);
 		System.out.println("Costo en operaciones de encontrar la solución : "+ busquedaGreedy.getTime());
 	}
 		

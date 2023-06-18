@@ -38,7 +38,6 @@ public class Tunel<T> implements Comparable<Tunel<T>>{
 
 	@Override
 	public int compareTo(Tunel<T>  o ) {
-		Contador.sumar();
 		if ((int) this.getEtiqueta() > (int) o.getEtiqueta()) {
 			return 1;
 		}else if ((int )this.getEtiqueta() < (int)o.getEtiqueta()){
