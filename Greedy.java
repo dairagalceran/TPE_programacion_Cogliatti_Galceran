@@ -23,7 +23,7 @@ public class Greedy {
 
     public void greedy() {
 
-        // nueva instancia de la colección para no perder la lista original
+        // nueva instancia de la colección para no perder la lista original al eliminar elementos
         ArrayList<Tunel<Integer>> candidatos = new ArrayList<>(tuneles);
         // lista solución
         this.tunelesDistanciaMinima = new ArrayList<>();
@@ -44,6 +44,7 @@ public class Greedy {
             int estacionOrigenIndex  = estaciones.indexOf(estacionOrigen);
             int estacionDestinoIndex = estaciones.indexOf(estacionDestino);
 
+            // verifica que no haya redundancia
             if( unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex)){
                 this.tunelesDistanciaMinima.add(tunel);
                 unionFind.union(estacionOrigenIndex, estacionDestinoIndex);

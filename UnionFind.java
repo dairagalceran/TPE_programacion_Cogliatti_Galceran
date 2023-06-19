@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class UnionFind {
@@ -28,11 +30,11 @@ public class UnionFind {
 
         parent = new int[n];
         rank = new int[n];
+
         for (int i = 0; i < n; ++i) {
             parent[i] = i; // root of self
             rank[i] = 1; // contains only self
         }
-
         num = n;
     }
 
@@ -66,6 +68,8 @@ public class UnionFind {
 
         if (u == v)
             return u; // no-op
+
+        // tomar una copia de estado antes de aplicar
 
         // Make smaller tree u point to v
 
