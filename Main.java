@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String path = DATASET2;
+		String path = DATASET3;
 		CSVReader dataSets = new CSVReader(path);
 		dataSets.read();
 

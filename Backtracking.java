@@ -31,13 +31,13 @@ class Backtracking {
         */
         if (caminoParcial.size() == estaciones.size()-1 || (index != null && index == this.tuneles.size()-1)){
             Integer costoCaminoParcial = this.calcDistancia(caminoParcial);
+            // verifica que el conjunto de tuneles cumpla con la condición de que el conjunto no sea disjunto
             if (unionFind.numberOfSets() == 1){
+                // verifica que la solucion actual mejore a la mejor solucion encotrada hasta ahora
                 if(this.tunelesDistanciaMinima.size() == 0 ||  costoCaminoParcial < this.costoMinimo){
                     this.costoMinimo = costoCaminoParcial;
                     this.tunelesDistanciaMinima = new ArrayList<>(caminoParcial);
                 }
-            }else{
-                System.out.println("disjunto");
             }
         }else{
 
@@ -58,13 +58,9 @@ class Backtracking {
             int estacionOrigenIndex  = estaciones.indexOf(estacionOrigen);
             int estacionDestinoIndex = estaciones.indexOf(estacionDestino);
 
-            System.out.println("Antes de Union Chekear si el arco es redundante");
-            System.out.println("caminoParcial: " + caminoParcial);
-            System.out.println("Tunel para construir: "+tunel);
-            System.out.println("index: "+index);
-
-            // PODA: si el tunel actual no es redundante prosigue
-            if(unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex)) {
+            // RESTRICCIÓN DEL PROBLEMA:
+            // si el tunel actual no es redundante prosigue
+            if( unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex) ){
 
                 // añado el tunel al camino
                 caminoParcial.add(tunel);
@@ -79,6 +75,13 @@ class Backtracking {
                 this.regenerateUnionFind(caminoParcial);    // regeneramos unionFind
             }
 
+            // PODA:
+            // si los tuneles del caminoParcial + los tuneles disponebles no son mas o igual que los
+            // necesarios para terminar la obra, entonces no puedo prescindir sin ese tnel
+            // Mejoramiento de la metrica:
+            //          Sin la poda:    28884
+            //          Con esta poda:  19611
+            if(((this.tuneles.size() - (index + 1)) + caminoParcial.size()) >= this.estaciones.size() - 1)
                 // llamada recursiva SIN EL TUNEL ACTUAL
                 this.back(caminoParcial, index);
         }
