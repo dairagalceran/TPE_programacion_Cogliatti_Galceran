@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String path = DATASET3;
+		String path = DATASET2;
 		CSVReader dataSets = new CSVReader(path);
 		dataSets.read();
 
@@ -31,13 +31,27 @@ public class Main {
 		Timer timer = new Timer();
 		timer.start();
 	    Greedy busquedaGreedy = new Greedy(tuneles);
-		ArrayList<Tunel<Integer>> solucionGreedy = busquedaGreedy.greedy();
+		ArrayList<Tunel<Integer>> solucionGreedy = busquedaGreedy.execute();
 		double greedyTime = timer.stop();
 		System.out.println("Técnica: Greedy");
 	 	System.out.println( "Lista de túneles a construir: "+solucionGreedy);
 	 	System.out.println("Cantidad de metros totales dataSet3: "+busquedaGreedy.getCosto()+"km.");
 		System.out.println("Costo en tiempo de encontrar la solución : "+ greedyTime);
 		System.out.println("Costo en operaciones de encontrar la solución : "+ Contador.getContador());
+
+		System.out.println("---------------------------------");
+		Contador.reiniciar();
+		timer.start();
+		Backtracking backtracking = new Backtracking(tuneles, estaciones);
+		ArrayList<Tunel<Integer>> solucionBacktracking =  backtracking.execute();
+		double backtrackingTime = timer.stop();
+		long contador = Contador.getContador();
+		System.out.println("Técnica: Backtracking");
+		System.out.println("Lista de túneles a construir: " + solucionBacktracking);
+		System.out.println("Cantidad de metros totales dataSet3: " + backtracking.getCosto()+"km.");
+	   	System.out.println("Costo en tiempo de encontrar la solución : " + backtrackingTime);
+	   	System.out.println("Costo en operaciones de encontrar la solución : " + contador);
+
 	}
 		
 }

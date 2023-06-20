@@ -16,7 +16,7 @@ public class Greedy {
     }
     
 
-    public  ArrayList<Tunel<Integer>> greedy() {
+    public  ArrayList<Tunel<Integer>> execute() {
 
         ArrayList<Tunel<Integer>> tunelesDistanciaMinima = new ArrayList<>();
         // Ordenar los tuneles por peso en orden ascendente
