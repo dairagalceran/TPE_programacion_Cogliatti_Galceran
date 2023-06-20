@@ -1,4 +1,4 @@
-public class UnionFind {
+public class UnionFind implements Cloneable{
 
     private int[] parent;
     private int[] rank;
@@ -41,4 +41,15 @@ public class UnionFind {
         Contador.sumar();
     }
     
+    @Override
+    public UnionFind clone() {
+        try {
+            UnionFind cloned = (UnionFind) super.clone();
+            cloned.parent = parent.clone();
+            cloned.rank = rank.clone();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
