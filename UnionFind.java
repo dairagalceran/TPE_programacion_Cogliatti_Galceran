@@ -1,8 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.NoSuchElementException;
 
-public class UnionFind {
+public class UnionFind implements Cloneable{
     /**
      * parent[i] points to parent of element i or to self.
      */
@@ -23,8 +22,7 @@ public class UnionFind {
      *
      * @param n
      */
-    public UnionFind(int n)
-    {
+    public UnionFind(int n) {
         if (n <= 0)
             throw new IllegalArgumentException("Expected n > 0");
 
@@ -44,8 +42,7 @@ public class UnionFind {
      * @param i
      * @return
      */
-    public int find(int i)
-    {
+    public int find(int i) {
         if (i < 0 || i > parent.length)
             throw new NoSuchElementException("Invalid element");
 
@@ -59,8 +56,7 @@ public class UnionFind {
      * @param v
      * @return the representative of union
      */
-    public int union(int u, int v)
-    {
+    public int union(int u, int v) {
         // Replace elements by representatives
 
         u = find(u);
@@ -74,7 +70,9 @@ public class UnionFind {
         // Make smaller tree u point to v
 
         if (rank[v] < rank[u]) {
-            int t = v; v = u; u = t; // swap u, v
+            int t = v;
+            v = u;
+            u = t; // swap u, v
         }
 
         parent[u] = v;
@@ -86,27 +84,40 @@ public class UnionFind {
         return v;
     }
 
-    public int numberOfSets()
-    {
+    public int numberOfSets() {
         return num;
     }
+
     /**
      * Find representative (root) of element u
      */
-    private int root(int u)
-    {
+    private int root(int u) {
         while (parent[u] != u)
             u = parent[u];
         return u;
     }
+
     /**
      * Get rank (i.e. cardinality) of the set containing element u
+     *
      * @param u
      * @return
      */
-    public int rank(int u)
-    {
+    public int rank(int u) {
         u = root(u);
         return rank[u];
+    }
+
+    @Override
+    public UnionFind clone() {
+        try {
+            UnionFind cloned = (UnionFind) super.clone();
+            cloned.parent = parent.clone();
+            cloned.rank = rank.clone();
+//            cloned.num = num.clone();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

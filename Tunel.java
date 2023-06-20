@@ -49,7 +49,7 @@ public class Tunel<T> implements Comparable<Tunel<T>>{
 	
     @Override
 	public String toString(){
-		return  "E"+ this.getVerticeOrigen() + " - E" + this.getVerticeDestino()+" ";
+		return  "{E"+ this.getVerticeOrigen() + " - E" + this.getVerticeDestino()+"} ";
 	}
 
 

@@ -58,12 +58,16 @@ class Backtracking {
             int estacionOrigenIndex  = estaciones.indexOf(estacionOrigen);
             int estacionDestinoIndex = estaciones.indexOf(estacionDestino);
 
-            // RESTRICCIÓN DEL PROBLEMA:
+            // PODA:
             // si el tunel actual no es redundante prosigue
             if( unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex) ){
 
                 // añado el tunel al camino
                 caminoParcial.add(tunel);
+
+                // clon de unionFind
+                UnionFind unionFindClone = unionFind.clone();
+
                 // efectuo la union de conjunto
                 unionFind.union(estacionOrigenIndex, estacionDestinoIndex);
 
@@ -72,15 +76,14 @@ class Backtracking {
 
                 // deshacemos los pasos anteriores
                 caminoParcial.remove(caminoParcial.size() - 1); // eliminamos el ultimo
-                this.regenerateUnionFind(caminoParcial);    // regeneramos unionFind
+
+                // reestablecemos el clon de unionFind
+                unionFind = unionFindClone;
             }
 
             // PODA:
             // si los tuneles del caminoParcial + los tuneles disponebles no son mas o igual que los
             // necesarios para terminar la obra, entonces no puedo prescindir sin ese tnel
-            // Mejoramiento de la metrica:
-            //          Sin la poda:    28884
-            //          Con esta poda:  19611
             if(((this.tuneles.size() - (index + 1)) + caminoParcial.size()) >= this.estaciones.size() - 1)
                 // llamada recursiva SIN EL TUNEL ACTUAL
                 this.back(caminoParcial, index);
@@ -90,35 +93,13 @@ class Backtracking {
     public Integer calcDistancia(ArrayList<Tunel<Integer>> tuneles){
         int suma = 0;
         for(Tunel<Integer> tunel : tuneles){
-            this.time++;
             suma += tunel.getEtiqueta();
         }
         return suma;
     }
-    private void regenerateUnionFind(ArrayList<Tunel<Integer>> tuneles){
-        this.unionFind = new UnionFind(estaciones.size());
-        for(Tunel<Integer> tunel : tuneles){
-            this.time++;
-
-            // obtiene las estaciones de origen y destino
-            int estacionOrigen  = tunel.getVerticeOrigen();
-            int estacionDestino = tunel.getVerticeDestino();
-
-            // obtiene los indices de las estaciones en el arreglo
-            int estacionOrigenIndex  = estaciones.indexOf(estacionOrigen);
-            int estacionDestinoIndex = estaciones.indexOf(estacionDestino);
-
-            // poda: si el tunel actual no es redundante prosigue
-            if(this.unionFind.find(estacionOrigenIndex) != this.unionFind.find(estacionDestinoIndex)){
-                this.unionFind.union(estacionOrigenIndex,estacionDestinoIndex);
-            }
-        }
-    }
-
     public ArrayList<Tunel<Integer>> getSolucion(){
         return tunelesDistanciaMinima;
     }
-
     public Integer getCosto(){
         return this.costoMinimo;
     }
