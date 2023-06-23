@@ -20,7 +20,6 @@ public class Greedy {
         this.greedy();
     }
 
-
     public void greedy() {
 
         // nueva instancia de la colección para no perder la lista original al eliminar elementos
