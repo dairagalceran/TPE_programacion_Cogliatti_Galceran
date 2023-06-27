@@ -84,7 +84,7 @@ class Backtracking {
                 unionFind = unionFindClone;
             }
 
-            // PODA:
+            // PODA #3:
             // si los tuneles del caminoParcial + los tuneles disponebles no son mas o igual que los
             // necesarios para terminar la obra, entonces no puedo prescindir sin ese tnel
             if(((this.tuneles.size() - (index + 1)) + caminoParcial.size()) >= this.estaciones.size() - 1)
