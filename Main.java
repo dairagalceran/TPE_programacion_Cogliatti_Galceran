@@ -7,7 +7,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String numberSet = "dataset2";
+		String numberSet = "dataset3." +
+				"";
 		String path = DATASET+numberSet+".txt";
 
 		CSVReader dataSets = new CSVReader(path);
@@ -21,8 +22,7 @@ public class Main {
 		ArrayList<Integer> estaciones = dataSets.getEstaciones();
 		System.out.println(estaciones);
 
-
-		//instanciar y calcular con greedy el camino mas corto de túneles
+		// instanciar y calcular con greedy el camino mas corto de túneles
 
 	    Greedy busquedaGreedy = new Greedy(tuneles, estaciones);
 		ArrayList<Tunel<Integer>> solucionGreedy = busquedaGreedy.getSolucion();

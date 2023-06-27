@@ -114,7 +114,6 @@ public class UnionFind implements Cloneable{
             UnionFind cloned = (UnionFind) super.clone();
             cloned.parent = parent.clone();
             cloned.rank = rank.clone();
-//            cloned.num = num.clone();
             return cloned;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);

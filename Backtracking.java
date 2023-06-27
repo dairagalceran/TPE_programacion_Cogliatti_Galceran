@@ -58,9 +58,12 @@ class Backtracking {
             int estacionOrigenIndex  = estaciones.indexOf(estacionOrigen);
             int estacionDestinoIndex = estaciones.indexOf(estacionDestino);
 
-            // PODA:
+            // PODA #1:
             // si el tunel actual no es redundante prosigue
-            if( unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex) ){
+            if( unionFind.find(estacionOrigenIndex) != unionFind.find(estacionDestinoIndex) &&
+            // PODA #2:
+            // si el km del camino parcial mas el nuevo arco excede el la mejor solucion acual
+            ( this.costoMinimo == 0 || this.costoMinimo > this.calcDistancia(caminoParcial) + tunel.getEtiqueta())){
 
                 // añado el tunel al camino
                 caminoParcial.add(tunel);
